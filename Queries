@@ -1,0 +1,77 @@
+Customer Shopping Analysis Istanbul
+
+
+--Gender Distribution 
+
+select gender, count (gender) as GenderDistribution 
+from customer_shopping_data
+group by gender
+
+-- Number of transactions generated in each mall
+
+select shopping_mall, count (invoice_no)
+from customer_shopping_data
+group by shopping_mall
+
+-- Total sales generated in each mall
+
+select shopping_mall, sum(quantity) as Total_Quantity, sum(price) as Total_Price, round(sum(quantity)*sum(price)) as SalesGenerated
+from customer_shopping_data
+group by shopping_mall
+order by SalesGenerated desc
+
+-- Age Distribution 
+
+select age,   count( age) as Age_Distribution
+from customer_shopping_data
+group by age
+order by age
+
+-- Product Category Count 
+
+
+select category, count( category) as Quantity
+from customer_shopping_data
+group by category
+order by category
+
+---- Age distribution according to product category, gender  
+
+with product_category 
+as 
+(select category, count( category) 
+from customer_shopping_data
+group by category)
+
+select age, gender, category, count( category) as Category_Quantity
+from customer_shopping_data
+group by age, category, gender
+order by age
+
+
+
+Total Sales Generated Categorised by Age, Gender & Product Category
+
+---- Age distribution according to product category, gender  
+
+with product_category 
+as 
+(select category, count( category) 
+from customer_shopping_data
+group by category)
+
+select age, gender, category, count( category) as Unit_Sold, sum(price) Price , sum(quantity) Quantity,  round(sum(quantity)*sum(price)) as SalesGenerated
+from customer_shopping_data
+group by age, category, gender
+order by age
+
+
+
+
+
+
+
+
+
+
+
