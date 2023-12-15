@@ -65,6 +65,20 @@ from customer_shopping_data
 group by age, category, gender
 order by age
 
+---- Distribution according to product category, gender, shopping mall 
+
+with product_category 
+as 
+(select category, count( category) 
+from customer_shopping_data
+group by category)
+
+select age, gender, category, shopping_mall, count( category) as Unit_Sold, sum(price) Price , sum(quantity) Quantity,  round(sum(quantity)*sum(price)) as SalesGenerated
+from customer_shopping_data
+group by age, category, gender, shopping_mall
+order by age
+
+
 
 
 
