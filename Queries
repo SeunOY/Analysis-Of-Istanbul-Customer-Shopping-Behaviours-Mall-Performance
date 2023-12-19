@@ -78,7 +78,11 @@ from customer_shopping_data
 group by age, category, gender, shopping_mall
 order by age
 
+-- Adding a New Category 'Indoor Plants'
 
+insert into 
+customer_shopping_data (category)
+VALUES('Indoor Plants')
 
 
 
